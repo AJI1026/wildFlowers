@@ -1,0 +1,101 @@
+:root {
+    --dark-body: #4d4c5a;
+    /*--dark-main: #141529;*/
+    --dark-main: #37373a;
+    --dark-second: #79788c;
+    --dark-hover: #323048;
+    --dark-text: #f8fbff;
+    --dark-date: #4d4c5a;
+    --dark-background: #fff;
+
+    --light-body: #f3f8fe;
+    --light-main: #fdfdfd;
+    --light-second: #c3c2c8;
+    --light-hover: #edf0f5;
+    --light-text: #151426;
+    --light-date: #000;
+    --light-background: #000;
+
+    --black: #000;
+    --white: #fff;
+
+    --shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+
+    --font-family: cursive;
+}
+.dark {
+    --bg-body: var(--dark-body);
+    --bg-main: var(--dark-main);
+    --bg-second: var(--dark-second);
+    --color-hover: var(--dark-hover);
+    --color-text: var(--dark-text);
+    --color-date: var(--dark-date);
+    --color-background: var(--dark-background);
+}
+.light {
+    --bg-body: var(--light-body);
+    --bg-main: var(--light-main);
+    --bg-second: var(--light-second);
+    --color-hover: var(--light-hover);
+    --color-text: var(--light-text);
+    --color-date: var(--light-date);
+    --color-background: var(--light-background);
+}
+html, body, #app {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    min-width: 710px;
+    font-family: Tahoma, serif;
+    box-sizing: border-box;
+}
+.el-form-item__label {
+    text-align: justify;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #33373f;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    width: 100px;
+    height: 40px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+
+}
+.el-form-item__label::after {
+    content: ' ';
+    width: 100%;
+    display: inline-block;
+}
+
+.demo-drawer__footer {
+    display: flex;
+    justify-content: center;
+}
+.el-collapse-item__content {
+    padding: 0 !important;
+}
+
+.el-page-header__content {
+    color: #00d0ff;
+}
+
+.el-popover {
+    position: absolute;
+    background: #FFF;
+    min-width: 80px;
+    border-radius: 4px;
+    border: 1px solid #EBEEF5;
+    padding: 0;
+    z-index: 2000;
+    color: #606266;
+    line-height: 1.4;
+    text-align: justify;
+    font-size: 14px;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    word-break: break-all;
+}
+
