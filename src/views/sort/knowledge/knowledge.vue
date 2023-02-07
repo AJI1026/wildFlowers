@@ -4,21 +4,22 @@
       <!--返回按钮-->
       <div class="back">
         <el-page-header @back="backHome" content="主页" class="back-item"></el-page-header>
+        <b>当前书籍标签：<span style="color: #ff0562">{{bookTypeTag}}</span></b>
       </div>
       <!--书籍轮播图-->
       <div class="swiper-container">
         <div class="swiper">
-          <el-carousel height="220px">
-            <el-carousel-item>
+          <el-carousel height="160px" :interval="4000" type="card">
+            <el-carousel-item class="head-swiper">
               <div class="swiper1"></div>
             </el-carousel-item>
-            <el-carousel-item>
+            <el-carousel-item class="head-swiper">
               <div class="swiper2"></div>
             </el-carousel-item>
-            <el-carousel-item>
+            <el-carousel-item class="head-swiper">
               <div class="swiper3"></div>
             </el-carousel-item>
-            <el-carousel-item>
+            <el-carousel-item class="head-swiper">
               <div class="swiper4"></div>
             </el-carousel-item>
           </el-carousel>
@@ -26,7 +27,15 @@
       </div>
       <!--书籍导航-->
       <div class="book-nav">
-        <book-nav style="transform: scale(0.7)"></book-nav>
+        <el-tag>IT</el-tag>
+        <el-tag>数字金融</el-tag>
+        <el-tag>人文社科</el-tag>
+        <el-tag>历史</el-tag>
+        <el-tag>哲学</el-tag>
+        <el-tag>动物学、行为学</el-tag>
+        <el-tag>机械、自动化</el-tag>
+        <el-tag>航天、物理</el-tag>
+        <el-tag>细胞、遗传学</el-tag>
       </div>
     </div>
     <!--任务列表-->
@@ -136,6 +145,7 @@
             <i class="iconfont icon-jiahao" @click="addToCart(index)"></i>
           </div>
         </div>
+        <div class="shadow-box"></div>
       </div>
       <!--分页-->
       <div class="Page">
@@ -187,12 +197,11 @@ import {
   quantityChange,
   task
 } from '@/api'
-import bookNav from '@/components/booksNav'
 import draggable from 'vuedraggable'
 
 export default {
     name: 'knowledge-container',
-    components: { bookNav, draggable},
+    components: { draggable },
     inject: ['reload'],
     filters: {
       capitalize(value) {
@@ -201,20 +210,13 @@ export default {
     },
     data() {
       return {
-        // 存每页书籍数据
-        itBookList: [],
-        // 前端收藏状态
-        collectStatus: [],
-        // 存放分页的数据
-        pagesData: {},
-        // 任务列表数据
-        taskArray:[],
-        // 已完成任务列表数据
-        completedTaskArray: [],
-        // 默认激活的折叠面板
-        activeNames: ['ToDoList','Completed'],
-        // 任务列表改数据
-        form: {},
+        itBookList: [], // 存每页书籍数据
+        collectStatus: [], // 前端收藏状态
+        pagesData: {}, // 存放分页的数据
+        taskArray:[], // 任务列表数据
+        completedTaskArray: [], // 已完成任务列表数据
+        activeNames: ['ToDoList','Completed'], // 默认激活的折叠面板
+        form: {}, // 任务列表改数据
         table: false,
         dialog: false,
         loading: false,
@@ -222,11 +224,9 @@ export default {
         timer: null,
         indexForModify: '',
         originData: {},
-        // 任务列表查数据
-        check: false,
+        check: false, // 任务列表查数据
         checkData: {},
-        // 任务列表加数据
-        allId: [0],
+        allId: [0], // 任务列表加数据
         max: '',
         addTaskForm: false,
         addForm: {
@@ -236,24 +236,19 @@ export default {
           createTime: ''
         },
         addFormLabelWidth: '80px',
-        // 任务完成状态数据
-        completedStatusForm: {},
-        // 空购物车
-        emptyCart:true,
-        // 购物车商品数据
+        completedStatusForm: {}, // 任务完成状态数据
+        emptyCart:true, // 空购物车
         goodsData: {
           bookName: '',
           CoverImg: '',
           bookPrice: '',
           goodsQuantity: ''
-        },
-        // 已加入购物车的简单列表数据
-        simpleCartList: [],
-        // 商品数量
-        goodsNum: [],
-        // 临时存商品下标，用于改变商品列表中商品数量
-        indexOfGood: '',
-        simpleBookName: []
+        },  // 购物车商品数据
+        simpleCartList: [], // 已加入购物车的简单列表数据
+        goodsNum: [], // 商品数量
+        indexOfGood: '', // 临时存商品下标，用于改变商品列表中商品数量
+        simpleBookName: [],
+        bookTypeTag: 'IT', // 书籍种类标签
       }
     },
     methods: {
@@ -474,7 +469,9 @@ export default {
       },
       // 去到详情页
       forDetail(index) {
-        console.log(index)
+        let bookQuery = JSON.stringify(this.itBookList[index])
+        // 这里没有传id，而是把整个对象传过去是为了减少数据的请求次数
+        this.$router.push("/knowledge/books/detail?obj="+encodeURIComponent(bookQuery))
       },
     },
     created() {
@@ -491,6 +488,7 @@ export default {
 
 <style lang="scss">
   .it-container {
+    min-width: 968px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -508,13 +506,18 @@ export default {
         width: 220px;
         height: 220px;
         color: white;
-        opacity: 0.7;
-        &:hover {
-          opacity: 1;
-        }
         .back-item {
+          min-width: 133px;
           position: relative;
-          top: 0;
+          top: 60px;
+          left: 20px;
+        }
+        b {
+          min-width: 128px;
+          position: relative;
+          top: 160px;
+          left: 300px;
+          color:#252525;
         }
       }
       // 头部轮播图
@@ -523,11 +526,19 @@ export default {
         justify-content: center;
         align-items: center;
         width: calc(100vw - 440px);
-        height: 220px;
+        height: 160px;
+        min-width: 968px;
+        opacity: 0;
         @media (min-width: 1170px) {
+          opacity: 1;
           .swiper {
             width: 870px;
             height: 220px;
+            .head-swiper {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
             .swiper1 {
               width: 870px;
               height: 220px;
@@ -559,6 +570,18 @@ export default {
       .book-nav {
         width: 220px;
         height: 220px;
+        min-width: 220px;
+        min-height: 220px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        padding-left: 10px;
+        .el-tag {
+          cursor: pointer;
+          margin: 0 2px 2px 0;
+          &:hover {
+            background-color: #e1e1e1;
+          }
+        }
       }
     }
 
@@ -568,13 +591,25 @@ export default {
       flex-wrap: wrap;
       position: relative;
       justify-content: space-around;
+      min-width: 528px;
       flex: 1;
       height: 100%;
       .box {
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #000;
+        background-color: #33373f;
         display: block;
         margin: 30px;
         height: 280px;
         width: 200px;
+        border-radius: 12px;
+        &:hover .shadow-box {
+          left: 110%;
+          transition: .5s ease-out;
+          transform: translateY(-10px);
+          box-shadow: 0 26px 40px -24px rgb(0 36 100 / 50%);
+        }
         .images {
           width: 200px;
           height: 200px;
@@ -591,10 +626,6 @@ export default {
           align-items: center;
           color: #33ff33;
           font-size: 14px;
-          &:hover {
-            cursor: pointer;
-            transform: scale(1.12);
-          }
           .price-icon {
             font-size: 30px;
             color: white;
@@ -615,9 +646,6 @@ export default {
             span {
               color: white;
               font-size: 12px;
-              &:hover {
-                transform: scale(1.12);
-              }
             }
             i {
               cursor: pointer;
@@ -629,6 +657,15 @@ export default {
               }
             }
           }
+        }
+        .shadow-box {
+          position: absolute;
+          left: -110%;
+          top: 0;
+          width: 200px;
+          height: 280px;
+          background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+          transform: skew(-30deg);
         }
       }
       .Page {

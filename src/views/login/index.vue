@@ -71,16 +71,16 @@
       </el-form>
     </div>
     <!--视频背景-->
-    <div class="videoContainer">
-      <video id="bgVid" autoplay muted loop>
-        <source src="../../assets/login.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div id="d1">
-      <audio id="a1" controls autoplay loop>
-        <source src="../../assets/login.mp3">
-      </audio>
-    </div>
+<!--    <div class="videoContainer">-->
+<!--      <video id="bgVid" autoplay muted loop>-->
+<!--        <source src="../../assets/login.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--    </div>-->
+<!--    <div id="d1">-->
+<!--      <audio id="a1" controls autoplay loop>-->
+<!--        <source src="../../assets/login.mp3">-->
+<!--      </audio>-->
+<!--    </div>-->
     <!-- 底部波浪-->
     <waveComponent></waveComponent>
   </div>
