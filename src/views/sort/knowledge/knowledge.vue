@@ -126,8 +126,8 @@
     </div>
     <!--数据展示-->
     <div class="shell">
-      <div class="box" v-for="(item, index) in itBookList" :key="index" @click="forDetail(index)">
-        <div class="images">
+      <div class="box" v-for="(item, index) in itBookList" :key="index">
+        <div class="images" @click="forDetail(index)">
           <img :src="item.CoverImg" alt="">
         </div>
         <div class="price">

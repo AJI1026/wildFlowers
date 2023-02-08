@@ -44,7 +44,9 @@
                 <i class="iconfont icon-iosfloweroutline"></i>
                 <span class="info-title">
                   标签：
-                  <el-tag type="primary" class="title-content">{{bookData.bookType}}</el-tag>
+                  <el-tag type="primary" class="title-content tag"  @click.native="back">
+                    {{bookData.bookType}}
+                  </el-tag>
                 </span>
               </p>
               <p class="name">
@@ -71,12 +73,24 @@
             </div>
           </div>
           <div class="book-choose">
-            <!--images只适合于数组-->
-            <viewer :images="bookData.detailImg">
-              <div v-for="item in bookData.detailImg" :key="item" class="chosen">
-                <img class="medium" :src="item" alt="" />
+            <div class="top">
+              <div class="price">
+                <i class="iconfont icon-jiage"></i>
+                <span>{{bookData.bookPrice | capitalize}}</span>
+                <p>原价：{{originPrice | capitalize}}</p>
               </div>
-            </viewer>
+              <div class="off">
+                <img src="https://pic.quanjing.com/69/cb/QJ6954884739.jpg@!350h" alt="">
+              </div>
+            </div>
+            <div class="bottom">
+              <!--images只适合于数组-->
+              <viewer :images="bookData.detailImg">
+                <div v-for="item in bookData.detailImg" :key="item" class="chosen">
+                  <img class="medium" :src="item" alt="" />
+                </div>
+              </viewer>
+            </div>
           </div>
         </div>
         <el-divider></el-divider>
@@ -103,6 +117,12 @@ export default {
     data() {
       return {
         bookData: '', // 书籍的数据
+        originPrice: '', // 原价
+      }
+    },
+    filters: {
+      capitalize(value) {
+        return parseFloat(value).toFixed(2)
       }
     },
     methods: {
@@ -114,6 +134,7 @@ export default {
       // 解析url获取书籍数据
       this.bookData = JSON.parse(decodeURIComponent(this.$route.query.obj));
       console.log(this.bookData)
+      this.originPrice = this.bookData.bookPrice * 1.15
     }
   }
 </script>
@@ -174,30 +195,94 @@ export default {
                     font-weight: 400;
                     color: #252525;
                   }
+                  .tag {
+                    &:hover {
+                      cursor: pointer;
+                      transition: .5s ease-in-out;
+                      background-color: #c3c2c8;
+                    }
+                  }
                 }
               }
             }
           }
           .book-choose {
-            border: 1px solid white;
             width: 600px;
             margin-left: 10px;
             box-sizing: border-box;
             padding: 10px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: flex-start;
-            .chosen {
-              float: left;
-              cursor: pointer;
-              width: 54px;
-              height: 54px;
-              margin: 5px;
-              img {
+            .top {
+              width: 100%;
+              border-radius: 12px;
+              background-color: grey;
+              position: relative;
+              .price {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                padding-left: 10px;
+                height: 60px;
+                width: 200px;
+                border-top-left-radius: 12px;
+                border-top-right-radius: 26px;
+                border-bottom-right-radius: 26px;
+                background-color: dimgrey;
+                position: relative;
+                i {
+                  font-size: 18px;
+                }
+                span {
+                  font-size: 20px;
+                  position: relative;
+                  top: -4px;
+                  color: white;
+                }
+                p {
+                  position: absolute;
+                  top: 22px;
+                  left: 20px;
+                  font-size: 12px;
+                  text-decoration: line-through;
+                }
+              }
+              .off {
+                position: absolute;
+                top: 0;
+                right: 10px;
+                width: 100px;
+                height: 60px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+            .bottom {
+              background-color: white;
+              border-radius: 0 12px 12px 12px;
+              position: relative;
+              top: -70px;
+              width: 100%;
+              box-sizing: border-box;
+              padding: 10px;
+              .chosen {
+                float: left;
+                cursor: pointer;
                 width: 54px;
                 height: 54px;
-              }
-              &:hover {
-                transform: scale(1.12);
+                margin: 5px;
+                img {
+                  width: 54px;
+                  height: 54px;
+                }
+                &:hover {
+                  transform: scale(1.12);
+                }
               }
             }
           }
