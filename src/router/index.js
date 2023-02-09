@@ -101,6 +101,22 @@ const routes = [
             requiresAuth: true // 要求验证的页面
         }
     },
+    // 店铺页面
+    {
+        path: '/shop',
+        component : () => import('@/views/shop/index'),
+        meta: {
+            requiresAuth: true // 要求验证的页面
+        }
+    },
+    // 客服页面
+    {
+        path: '/service',
+        component : () => import('@/views/service/index'),
+        meta: {
+            requiresAuth: true // 要求验证的页面
+        }
+    },
     // 404 页面
     {
         name: '404',

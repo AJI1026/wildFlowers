@@ -4,9 +4,7 @@
       <!--左侧书籍商品信息-->
       <el-main class="book-info">
         <!--返回按钮-->
-        <el-button type="warning" @click.native="back">
-          返回
-        </el-button>
+        <el-button type="warning" @click.native="back">返回</el-button>
         <!--书籍头部标题-->
         <div class="book-title">
           <p>{{bookData.bookName}}</p>
@@ -28,21 +26,25 @@
             <div class="book-basic-info">
               <p class="name">
                 <i class="iconfont icon-iosfloweroutline"></i>
-                <span class="info-title">
+                <el-tooltip class="item" effect="dark" :content="bookData.bookName" placement="top">
+                  <span class="info-title" style="cursor: pointer">
                   书名：
                   <span class="title-content">{{bookData.bookName}}</span>
                 </span>
+                </el-tooltip>
               </p>
               <p class="name">
                 <i class="iconfont icon-iosfloweroutline"></i>
-                <span class="info-title">
+                <el-tooltip class="item" effect="dark" :content="bookData.bookAuthor" placement="top">
+                  <span class="info-title"  style="cursor: pointer">
                   作者：
                   <span class="title-content">{{bookData.bookAuthor}}</span>
                 </span>
+                </el-tooltip>
               </p>
               <p class="name">
                 <i class="iconfont icon-iosfloweroutline"></i>
-                <span class="info-title">
+                  <span class="info-title">
                   标签：
                   <el-tag type="primary" class="title-content tag"  @click.native="back">
                     {{bookData.bookType}}
@@ -90,17 +92,59 @@
                   <img class="medium" :src="item" alt="" />
                 </div>
               </viewer>
+              <div class="storage">
+                <div class="buy">
+                  <span>库存：{{bookData.bookStore}}件</span>
+                  <i class="iconfont icon-dianpu" style="margin-left: 20px" @click="goShop"></i>
+                  <i class="iconfont icon-kefu" @click="goService"></i>
+                  <i class="iconfont icon-gouwuchekong" style="margin-right: 40px" @click="goCart"></i>
+                  <div class="btn">
+                    <el-button type="warning" round size="small">加入购物车</el-button>
+                    <el-button type="danger" round size="small">立即购买</el-button>
+                  </div>
+                </div>
+                <div class="bottom-decoration"></div>
+              </div>
             </div>
           </div>
+          <div class="book-video">
+            <video id="myVideo" class="video-js">
+              <source>
+            </video>
+          </div>
         </div>
-        <el-divider></el-divider>
         <!--书籍内容简介-->
-        <div class="content-introduction"></div>
-        <el-divider></el-divider>
+        <div class="content-introduction">
+          <div class="content-head">
+            <div class="content-head-square"></div>
+            <div class="head">内容简介</div>
+          </div>
+          <div class="content-body">{{bookData.bookIntroduction}}</div>
+        </div>
         <!--作者简介-->
-        <div class="author-introduction"></div>
-        <!--二维码、分享-->
-        <div class="share"></div>
+        <div class="author-introduction">
+          <div class="content-head">
+            <div class="content-head-square"></div>
+            <div class="head">作者简介</div>
+          </div>
+          <div class="content-body">{{bookData.authorIntroduction}}</div>
+        </div>
+        <!--二维码-->
+        <div class="qrCode">
+          <div id="qrcode"></div>
+        </div>
+        <!--分享-->
+        <div class="share">
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+        </div>
       </el-main>
       <!--右侧标签导航-->
       <el-aside class="book-tag">
@@ -111,6 +155,7 @@
 </template>
 
 <script>
+import QRCode from 'qrcodejs2'
 
 export default {
     name: 'knowledge-detail-container',
@@ -125,16 +170,49 @@ export default {
         return parseFloat(value).toFixed(2)
       }
     },
+    components: {
+      QRCode
+    },
     methods: {
+      // 返回书籍页面
       back() {
         this.$router.push('/knowledge/books')
-      }
+      },
+      // 去到店铺
+      goShop() {
+        this.$router.push('/shop')
+      },
+      // 去到客服
+      goService() {
+        this.$router.push('/service')
+      },
+      // 去到购物车
+      goCart() {
+        this.$router.push('/cart')
+      },
+      // 生成二维码
+      //  生成二维码
+      qrcode () {
+        let qrcode = new QRCode("qrcode", {
+          width: 180,
+          height: 180,
+        });
+        function makeCode () {
+          qrcode.makeCode("http://192.168.0.102:80/#/index?code=" + localStorage.getItem('username'));
+        }
+        makeCode();
+      },
     },
     created() {
       // 解析url获取书籍数据
       this.bookData = JSON.parse(decodeURIComponent(this.$route.query.obj));
       console.log(this.bookData)
       this.originPrice = this.bookData.bookPrice * 1.15
+    },
+    mounted () {
+      this.$nextTick(function () {
+        this.qrcode();
+      })
     }
   }
 </script>
@@ -143,19 +221,22 @@ export default {
   .knowledge-detail-container {
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     .el-container {
       width: 100%;
       height: 100%;
+      // 书籍商品信息
       .book-info {
+        min-width: 904px;
         .book-title {
           p:nth-child(1) {
             font-size: 20px;
             font-weight: 600;
             color: #252525;
+            margin-top: 10px;
           }
           p:nth-child(2) {
             color: #252525;
+            margin-top: 10px;
           }
         }
         .book {
@@ -167,17 +248,19 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 500px;
+            width: 440px;
             height: 100%;
             box-sizing: border-box;
             padding: 10px;
-            background-color: white;
+            background-color: #FFFFFB;
             border-radius: 12px;
             .book-img {
               width: 200px;
               height: 260px;
-              margin-right: 40px;
+              cursor: pointer;
+              margin-right: 20px;
               img {
+                max-height: 260px;
                 width: 100%;
                 height: 100%;
               }
@@ -188,6 +271,7 @@ export default {
               white-space: nowrap;
               text-overflow: ellipsis;
               .name {
+                margin-bottom: 10px;
                 .info-title {
                   font-weight: 800;
                   .title-content {
@@ -207,7 +291,7 @@ export default {
             }
           }
           .book-choose {
-            width: 600px;
+            width: 450px;
             margin-left: 10px;
             box-sizing: border-box;
             padding: 10px;
@@ -244,7 +328,7 @@ export default {
                 }
                 p {
                   position: absolute;
-                  top: 22px;
+                  top: 30px;
                   left: 20px;
                   font-size: 12px;
                   text-decoration: line-through;
@@ -263,13 +347,39 @@ export default {
               }
             }
             .bottom {
-              background-color: white;
+              background-color: #FFFFFB;
               border-radius: 0 12px 12px 12px;
               position: relative;
-              top: -70px;
+              top: -29px;
               width: 100%;
               box-sizing: border-box;
               padding: 10px;
+              display: flex;
+              flex-wrap: wrap;
+              height: 160px;
+              .storage {
+                width: 100%;
+                min-width: 420px;
+                color: #8B4726;
+                .buy {
+                  margin-top: 20px;
+                  box-sizing: border-box;
+                  padding-left: 5px;
+                  font-size: 14px;
+                  margin-bottom: 10px;
+                  height: 40px;
+                  line-height: 40px;
+                  i {
+                    font-size: 20px;
+                    margin-right: 10px;
+                    cursor: pointer;
+                  }
+                  .btn {
+                    height: 40px;
+                    display: inline-block;
+                  }
+                }
+              }
               .chosen {
                 float: left;
                 cursor: pointer;
@@ -286,10 +396,70 @@ export default {
               }
             }
           }
+          .book-video {
+            border: 1px solid black;
+            width: 200px;
+            height: 100%;
+            .video-js {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .content-introduction, .author-introduction {
+          .content-head {
+            position: relative;
+            margin-top: 20px;
+            .content-head-square {
+              position: absolute;
+              left: -5px;
+              width: 10px;
+              height: 40px;
+              background-color: #00AA90;
+            }
+            .head {
+              height: 40px;
+              font-size: 18px;
+              box-sizing: border-box;
+              padding: 5px 0 5px 15px;
+              font-weight: 600;
+              background-color: #FFFFFB;
+              border-bottom: 2px solid #00AA90;
+            }
+          }
+          .content-body {
+            background-color: #FFFFFB;
+            width: 100%;
+            height: auto;
+            word-wrap: break-word;
+            font-size: 14px;
+            text-indent: 2em;
+            color: black;
+            margin-top: 10px;
+            box-sizing: border-box;
+            padding: 20px;
+            line-height: 40px;
+            border-radius: 5px;
+            font-family: "Times New Roman",serif;
+          }
+        }
+        .qrCode {
+          height: 200px;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .share {
+          border: 1px solid black;
+          height: 100px;
+          margin-top: 10px;
         }
       }
+      // 右侧导航标签
       .book-tag {
         background-color: #33373f;
+        display: flex;
       }
     }
   }

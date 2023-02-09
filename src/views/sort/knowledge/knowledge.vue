@@ -145,7 +145,7 @@
             <i class="iconfont icon-jiahao" @click="addToCart(index)"></i>
           </div>
         </div>
-        <div class="shadow-box"></div>
+        <div class="shadow-box" @click="forDetail(index)"></div>
       </div>
       <!--分页-->
       <div class="Page">

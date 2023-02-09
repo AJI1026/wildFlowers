@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3729218 */
-  src: url('//at.alicdn.com/t/c/font_3729218_a38gzii4ois.woff2?t=1674187749929') format('woff2'),
-  url('//at.alicdn.com/t/c/font_3729218_a38gzii4ois.woff?t=1674187749929') format('woff'),
-  url('//at.alicdn.com/t/c/font_3729218_a38gzii4ois.ttf?t=1674187749929') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_3729218_avskfqw1sa.woff2?t=1675913352871') format('woff2'),
+  url('//at.alicdn.com/t/c/font_3729218_avskfqw1sa.woff?t=1675913352871') format('woff'),
+  url('//at.alicdn.com/t/c/font_3729218_avskfqw1sa.ttf?t=1675913352871') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwuchekong:before {
+  content: "\e63f";
+}
+
+.icon-dianpu:before {
+  content: "\e640";
+}
+
+.icon-kefu:before {
+  content: "\e641";
 }
 
 .icon-jurassic_user:before {
@@ -188,3 +200,4 @@
 .icon-shouye:before {
   content: "\e613";
 }
+
