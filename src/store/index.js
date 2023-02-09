@@ -24,6 +24,7 @@ export default new Vuex.Store({
         userList: [], // 用户列表
         chatType: '', // 聊天类型
         chatMessageList: [], // 聊天记录
+        buyNowData: '', // 立即购买数据
     },
     getters, // 把getters挂载到全局
     // state中的数据要通过mutations才能修改
@@ -80,7 +81,11 @@ export default new Vuex.Store({
         SOCKET_updateChatMessageList(state, data) {
             state.chatMessageList.push(data)
             console.log(state.chatMessageList)
-        }
+        },
+        // 立即购买的数据
+        setImmediateData(state, data) {
+            state.buyNowData = data
+        },
     },
     actions: {
         // 通过dispatch触发一个action行为

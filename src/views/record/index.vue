@@ -556,11 +556,14 @@ export default {
         width: 80%;
         height: 80px;
         .category {
+          background: url("../../assets/wallhaven-zyxvqy.jpg") center;
+          background-size: cover;
           width: 100%;
           height: 100%;
           border-radius: 24px;
+          color: white;
           .category-bottom {
-            color: grey;
+            color: white;
             opacity: 0.6;
             font-size: 8px;
             margin-top: 10px;

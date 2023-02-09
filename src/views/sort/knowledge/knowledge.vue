@@ -451,6 +451,7 @@ export default {
       },
       // 跳转购物车页面结算
       toCartPage() {
+        this.$store.state.buyNowData = ''
         this.$router.push('/cart')
       },
       // 起始购物车列表数据
@@ -486,7 +487,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .it-container {
     min-width: 968px;
     display: flex;
@@ -606,7 +607,7 @@ export default {
         border-radius: 12px;
         &:hover .shadow-box {
           left: 110%;
-          transition: .5s ease-out;
+          transition: .3s ease-out;
           transform: translateY(-10px);
           box-shadow: 0 26px 40px -24px rgb(0 36 100 / 50%);
         }

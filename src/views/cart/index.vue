@@ -422,21 +422,15 @@ export default {
     },
     data() {
       return {
-        // 返回箭头数据
-        backArrowData: ['地址选择','下单'],
-        // 默认第一步
-        step: '',
-        // 三级联动地址数据
-        options: regionData,
+        backArrowData: ['地址选择','下单'], // 返回箭头数据
+        step: '', // 默认第一步
+        options: regionData, // 三级联动地址数据
         selectedOptions: [],
-        // 标签数据
-        inputVisible: false,
+        inputVisible: false, // 标签数据
         inputValue: '',
-        // 修改地址的表单数据
-        updateAddress: false,
+        updateAddress: false, // 修改地址的表单数据
         updateAddressData: {},
         originAddressData: {},
-        // 新地址表单数据
         addressForm: {
           city: '',
           address: '',
@@ -444,33 +438,22 @@ export default {
           name: '',
           mobilePhone: '',
           remark: ['家'],
-        },
-        // 地址表格数据
-        addressData: [],
-        // 创建新地址表单
-        createNewAddress: false,
-        // 空地址
-        emptyAddress: true,
-        // 已选地址数据
-        addressChosen: {},
-        // 空购物车
-        emptyCart: false,
-        // 购物车数据
-        cartData: [],
-        // 合计金额
-        totalPrice: 0,
-        // 支付页面商品数据
-        goodsSettlement: [],
+        }, // 新地址表单数据
+        addressData: [], // 地址表格数据
+        createNewAddress: false, // 创建新地址表单
+        emptyAddress: true, // 空地址
+        addressChosen: {}, // 已选地址数据
+        emptyCart: false, // 空购物车
+        cartData: [], // 购物车数据
+        totalPrice: 0, // 合计金额
+        goodsSettlement: [], // 支付页面商品数据
         isGoodsData: false,
         getOrder: localStorage.getItem('getOrderId'),
-        // 展示更多数据
-        moreData: false,
+        moreData: false, // 展示更多数据
         lessData: false,
         none: true,
-        // 付款数据
-        agree: false,
+        agree: false, // 付款数据
         showLoading: true,
-        // 订单数据
         orderData: {
           orderId: '',
           orderAddressee: '',
@@ -480,8 +463,9 @@ export default {
           orderGoods: [],
           orderStatus: '',
           alipayNo: ''
-        },
+        }, // 订单数据
         createOrder: true,
+        immediateData: [], // 立即支付数据
       }
     },
     methods: {
@@ -549,13 +533,18 @@ export default {
       },
       // 购物车列表的数据
       async goodsData() {
-        const data = await goodsList()
-        this.cartData = data.data.goodsListData
-        let price = []
-        this.cartData.map((goods) => price.push(+goods.bookPrice * goods.goodsQuantity))
-        price.length > 0? this.totalPrice = eval(price.toString().replace(/,/g,'+')) : this.totalPrice = 0
-        if(this.cartData.length === 0) {
-          this.emptyCart = true
+        if(this.$store.state.buyNowData !== '') {
+          this.cartData = this.immediateData
+          this.totalPrice = this.immediateData[0].bookPrice
+        } else {
+          const data = await goodsList()
+          this.cartData = data.data.goodsListData
+          let price = []
+          this.cartData.map((goods) => price.push(+goods.bookPrice * goods.goodsQuantity))
+          price.length > 0? this.totalPrice = eval(price.toString().replace(/,/g,'+')) : this.totalPrice = 0
+          if(this.cartData.length === 0) {
+            this.emptyCart = true
+          }
         }
       },
       // 购物车删除数据
@@ -723,6 +712,13 @@ export default {
       }
     },
     created() {
+      let oneData = {
+        bookName: this.$store.state.buyNowData.bookName,
+        CoverImg: this.$store.state.buyNowData.CoverImg,
+        bookPrice: this.$store.state.buyNowData.bookPrice,
+        goodsQuantity: 1
+      }
+      this.immediateData.push(oneData)
       this.goodsData()
       this.firstAddressList()
       this.getStep()

@@ -4,7 +4,7 @@
       <!--左侧书籍商品信息-->
       <el-main class="book-info">
         <!--返回按钮-->
-        <el-button type="warning" @click.native="back">返回</el-button>
+        <el-button type="success" @click.native="back">返回</el-button>
         <!--书籍头部标题-->
         <div class="book-title">
           <p>{{bookData.bookName}}</p>
@@ -13,7 +13,6 @@
             {{bookData.bookAuthor}}
           </p>
         </div>
-        <el-divider></el-divider>
         <!--书籍商品信息-->
         <div class="book">
           <div class="book-card">
@@ -96,11 +95,11 @@
                 <div class="buy">
                   <span>库存：{{bookData.bookStore}}件</span>
                   <i class="iconfont icon-dianpu" style="margin-left: 20px" @click="goShop"></i>
-                  <i class="iconfont icon-kefu" @click="goService"></i>
-                  <i class="iconfont icon-gouwuchekong" style="margin-right: 40px" @click="goCart"></i>
+                  <i class="el-icon-chat-dot-square" @click="goService"></i>
+                  <i class="el-icon-shopping-cart-1" style="margin-right: 40px" @click="goCart"></i>
                   <div class="btn">
                     <el-button type="warning" round size="small">加入购物车</el-button>
-                    <el-button type="danger" round size="small">立即购买</el-button>
+                    <el-button type="danger" round size="small" @click.native="buyImmediately">立即购买</el-button>
                   </div>
                 </div>
                 <div class="bottom-decoration"></div>
@@ -109,7 +108,7 @@
           </div>
           <div class="book-video">
             <video id="myVideo" class="video-js">
-              <source>
+
             </video>
           </div>
         </div>
@@ -135,15 +134,13 @@
         </div>
         <!--分享-->
         <div class="share">
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
+          <a href="#"><i class="fab fa-weibo"></i></a>
+          <a href="#"><i class="fab fa-wechat"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
       </el-main>
       <!--右侧标签导航-->
@@ -170,9 +167,6 @@ export default {
         return parseFloat(value).toFixed(2)
       }
     },
-    components: {
-      QRCode
-    },
     methods: {
       // 返回书籍页面
       back() {
@@ -191,7 +185,6 @@ export default {
         this.$router.push('/cart')
       },
       // 生成二维码
-      //  生成二维码
       qrcode () {
         let qrcode = new QRCode("qrcode", {
           width: 180,
@@ -202,11 +195,15 @@ export default {
         }
         makeCode();
       },
+      // 立即购买
+      buyImmediately() {
+        this.$store.commit('setImmediateData', this.bookData)
+        this.$router.push('/cart')
+      },
     },
     created() {
       // 解析url获取书籍数据
       this.bookData = JSON.parse(decodeURIComponent(this.$route.query.obj));
-      console.log(this.bookData)
       this.originPrice = this.bookData.bookPrice * 1.15
     },
     mounted () {
@@ -217,8 +214,9 @@ export default {
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .knowledge-detail-container {
+    background-color: #FFFFFB;
     width: 100%;
     height: 100%;
     .el-container {
@@ -228,21 +226,20 @@ export default {
       .book-info {
         min-width: 904px;
         .book-title {
+          p {
+            margin-top: 10px;
+            opacity: 0.6;
+          }
           p:nth-child(1) {
             font-size: 20px;
             font-weight: 600;
-            color: #252525;
-            margin-top: 10px;
-          }
-          p:nth-child(2) {
-            color: #252525;
-            margin-top: 10px;
           }
         }
         .book {
           display: flex;
           flex-wrap: nowrap;
           height: 300px;
+          margin-top: 20px;
           color: #252525;
           .book-card {
             display: flex;
@@ -252,7 +249,7 @@ export default {
             height: 100%;
             box-sizing: border-box;
             padding: 10px;
-            background-color: #FFFFFB;
+            background-color: #e1e1e1;
             border-radius: 12px;
             .book-img {
               width: 200px;
@@ -347,7 +344,7 @@ export default {
               }
             }
             .bottom {
-              background-color: #FFFFFB;
+              background-color: #e1e1e1;
               border-radius: 0 12px 12px 12px;
               position: relative;
               top: -29px;
@@ -360,7 +357,6 @@ export default {
               .storage {
                 width: 100%;
                 min-width: 420px;
-                color: #8B4726;
                 .buy {
                   margin-top: 20px;
                   box-sizing: border-box;
@@ -373,6 +369,11 @@ export default {
                     font-size: 20px;
                     margin-right: 10px;
                     cursor: pointer;
+                    color: #ff0562;
+                    transition: .4s all;
+                    &:hover {
+                      transform: scale(1.12);
+                    }
                   }
                   .btn {
                     height: 40px;
@@ -423,12 +424,11 @@ export default {
               box-sizing: border-box;
               padding: 5px 0 5px 15px;
               font-weight: 600;
-              background-color: #FFFFFB;
               border-bottom: 2px solid #00AA90;
             }
           }
           .content-body {
-            background-color: #FFFFFB;
+            opacity: 0.6;
             width: 100%;
             height: auto;
             word-wrap: break-word;
@@ -451,9 +451,34 @@ export default {
           justify-content: center;
         }
         .share {
-          border: 1px solid black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           height: 100px;
           margin-top: 10px;
+          a {
+            display: inline-flex;
+            margin: 10px;
+            width: 40px;
+            height: 40px;
+            background: #2c3e50;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            transition: .4s;
+            border-radius: 50%;
+            font-size: 20px;
+            text-decoration: none;
+            i {
+              transition: .4s all;
+            }
+            &:hover {
+              background: #e67e22;
+              i {
+                transform: scale(1.6) rotate(25deg);
+              }
+            }
+          }
         }
       }
       // 右侧导航标签
