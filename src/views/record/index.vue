@@ -414,9 +414,6 @@ export default {
       scrollTrigger: false, // 默认初始值
     }
   },
-  created() {
-    this.content()
-  },
   methods: {
     errorHandler() {
       return true
@@ -533,6 +530,7 @@ export default {
     },
   },
   mounted() {
+    this.content()
     window.addEventListener('scroll', this.fixedActiveBar,true)
   },
 }

@@ -1,0 +1,22 @@
+{
+  "RECORDS": [
+    {
+      "_id": "63e3c84eb7a67d654398816b",
+      "password": "$2a$10$YD0DtTg0JxPTEbjaICaQ9.ns0VUtxIaISP14NETr4Qu.jMUkaCDCu",
+      "userFriends": "[ ]",
+      "userGroups": "[ ]",
+      "userId": "1",
+      "userImg": "https://w.wallhaven.cc/full/rr/wallhaven-rrrr6m.png",
+      "username": "aji1026"
+    },
+    {
+      "_id": "63e3c890b7a67d654398816f",
+      "password": "$2a$10$an//leXdP8CkYAZBi14ptuT1iW33LM5NJNazc8DFljRnQUb2FiDYa",
+      "userFriends": "[ ]",
+      "userGroups": "[ ]",
+      "userId": "2",
+      "userImg": "https://w.wallhaven.cc/full/p9/wallhaven-p999ze.png",
+      "username": "tanbo"
+    }
+  ]
+}

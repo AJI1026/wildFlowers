@@ -1,0 +1,136 @@
+{
+  "RECORDS": [
+    {
+      "_id": "63e3cb81b7a67d65439882f7",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>一、前期配置</h2>\n<h3><a id=\"nodejs_2\"></a>nodejs环境</h3>\n<pre><code class=\"lang-\">node -v\nnpm -v\n</code></pre>\n<h3><a id=\"git_9\"></a>git版本控制</h3>\n<pre><code class=\"lang-\">git --version\n</code></pre>\n<h3><a id=\"npm_15\"></a>npm淘宝镜像</h3>\n<pre><code class=\"lang-\">npm config set registry https://registry.npm.taobao.org/\nnpm config get registry\n</code></pre>\n<h3><a id=\"_22\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/qz/wallhaven-qzzrv7.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "1",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cbcbb7a67d65439882f9",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>二、一系列封装</h2>\n<h3><a id=\"utilsrequestjsaxios_2\"></a>在<code>utils/request.js</code>中进行axios二次封装</h3>\n<pre><div class=\"hljs\"><code class=\"lang-js\"><span class=\"hljs-keyword\">import</span> axios <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&#x27;axios&#x27;</span>\n\n<span class=\"hljs-keyword\">const</span> service = axios.<span class=\"hljs-title function_\">create</span>({\n\t<span class=\"hljs-attr\">baseURL</span>: <span class=\"hljs-string\">&#x27;https://haozhiyuan.ltd&#x27;</span>,\n\t<span class=\"hljs-attr\">timeout</span>: <span class=\"hljs-number\">5000</span>\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> service\n</code></div></pre>\n<h3><a id=\"api_15\"></a>api模块的单独封装</h3>\n<p>将所有的网络请求放置在api目录下统一管理，按照模块进行划分</p>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/vq/wallhaven-vqqzw5.png",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "2",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cbe1b7a67d65439882fd",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>三、图片资源</h2>\n<p>图片放入assets</p>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/85/wallhaven-855om2.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "3",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cbeab7a67d65439882ff",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>四、样式资源</h2>\n<p>放入styles文件夹，并且在<code>styles/index.scss</code>引入</p>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/9d/wallhaven-9ddzjd.png",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "4",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cbf5b7a67d6543988301",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>五、样式调整以及其它调整</h2>\n<h3><a id=\"_2\"></a>设置头部文字</h3>\n<pre><code class=\"lang-vue\">&lt;div class=&quot;login-container&quot;&gt;\n    &lt;el-form ref=&quot;loginForm&quot; :model=&quot;loginForm&quot; :rules=&quot;loginRules&quot; class=&quot;login-form&quot; auto-complete=&quot;on&quot; label-position=&quot;left&quot;&gt;\n\n      &lt;div class=&quot;title-container&quot;&gt;\n        &lt;img src=&quot;@/assets/logo.jpg&quot; alt=&quot;&quot; class=&quot;logo&quot;/&gt;\n        &lt;h3 class=&quot;title&quot;&gt;Manage System&lt;/h3&gt;\n      &lt;/div&gt;\n</code></pre>\n<h3><a id=\"_14\"></a>样式调整</h3>\n<pre><div class=\"hljs\"><code class=\"lang-scss\"><span class=\"hljs-selector-class\">.title-container</span> {\n    <span class=\"hljs-attribute\">position</span>: relative;\n    <span class=\"hljs-attribute\">display</span>: flex;\n    <span class=\"hljs-attribute\">justify-content</span>: center;\n    <span class=\"hljs-selector-class\">.logo</span> {\n      <span class=\"hljs-attribute\">margin</span>: <span class=\"hljs-number\">15px</span> <span class=\"hljs-number\">10px</span> <span class=\"hljs-number\">0</span> <span class=\"hljs-number\">0</span>;\n      <span class=\"hljs-attribute\">width</span>: <span class=\"hljs-number\">50px</span>;\n      <span class=\"hljs-attribute\">height</span>: <span class=\"hljs-number\">50px</span>;\n    }\n    <span class=\"hljs-selector-class\">.title</span> {\n      <span class=\"hljs-attribute\">font-size</span>: <span class=\"hljs-number\">26px</span>;\n      <span class=\"hljs-attribute\">color</span>: <span class=\"hljs-variable\">$light_gray</span>;\n      <span class=\"hljs-attribute\">text-align</span>: center;\n      <span class=\"hljs-attribute\">font-weight</span>: bold;\n    }\n  }\n</code></div></pre>\n<h3><a id=\"_35\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/jx/wallhaven-jxe9ww.png",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "5",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc03b7a67d6543988305",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>六、登录页</h2>\n<h3><a id=\"_2\"></a>表单验证三步走</h3>\n<p>el-form表单校验的必要条件</p>\n<ul>\n<li>El-form绑定model属性/rules规则</li>\n<li>El-form-item设置props属性</li>\n<li>El-input中绑定v-model属性</li>\n</ul>\n<h3><a id=\"_10\"></a>字段名对应</h3>\n<p>基础模板采用的是<code>username</code>的字段，但是实际接口中采用的是<code>mobile</code>的字段，为了更方便的写代码，所以我们将<code>username</code>改成<code>mobile</code></p>\n<pre><code class=\"lang-vue\">&lt;el-form-item prop=&quot;mobile&quot;&gt;\n        &lt;span class=&quot;svg-container&quot;&gt;\n          &lt;svg-icon icon-class=&quot;user&quot; /&gt;\n        &lt;/span&gt;\n        &lt;el-input\n          ref=&quot;mobile&quot;\n          v-model=&quot;loginForm.mobile&quot;\n          placeholder=&quot;请输入手机号&quot;\n          name=&quot;mobile&quot;\n          type=&quot;text&quot;\n          tabindex=&quot;1&quot;\n          auto-complete=&quot;on&quot;\n        /&gt;\n      &lt;/el-form-item&gt;\n</code></pre>\n<h3><a id=\"_31\"></a>修改提示</h3>\n<pre><code class=\"lang-vue\">placeholder=&quot;请输入手机号&quot;\n</code></pre>\n<h3><a id=\"_37\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/85/wallhaven-85g35j.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "6",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc12b7a67d6543988309",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"20_0\"></a>七、样式调整2.0</h2>\n<p>左侧导航组件的样式文件<code>styles/sidebar.scss</code></p>\n<h3><a id=\"_4\"></a>设置左侧导航背景颜色</h3>\n<p>在sidebar-container类选择器中修改</p>\n<h3><a id=\"_8\"></a>设置菜单选中颜色</h3>\n<p>显示左侧logo图片<code>src/settings.js</code></p>\n<p>设置sidebarLogo: true以显示logo</p>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/o5/wallhaven-o556j5.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "7",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc1eb7a67d654398830b",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>八、用户信息</h2>\n<h3><a id=\"srcutilsrequestjsAxios_2\"></a>在<code>src/utils/request.js</code>中写入请求拦截器，Axios二次封装</h3>\n<pre><div class=\"hljs\"><code class=\"lang-js\"><span class=\"hljs-keyword\">import</span> store <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&#x27;@/store&#x27;</span>\n<span class=\"hljs-comment\">// 请求拦截</span>\nservice.<span class=\"hljs-property\">interceptors</span>.<span class=\"hljs-property\">request</span>.<span class=\"hljs-title function_\">use</span>( <span class=\"hljs-function\"><span class=\"hljs-params\">config</span> =&gt;</span> {\n  <span class=\"hljs-keyword\">if</span>(store.<span class=\"hljs-property\">getters</span>.<span class=\"hljs-property\">token</span>) {\n    <span class=\"hljs-keyword\">if</span>(<span class=\"hljs-title function_\">checkTimeout</span>()) {\n      <span class=\"hljs-comment\">// 如果true表示过期了</span>\n      <span class=\"hljs-comment\">// 调用退出登录方法</span>\n      store.<span class=\"hljs-title function_\">dispatch</span>(<span class=\"hljs-string\">&#x27;user/logout&#x27;</span>)\n      router.<span class=\"hljs-title function_\">push</span>(<span class=\"hljs-string\">&#x27;/login&#x27;</span>)\n      <span class=\"hljs-keyword\">return</span> <span class=\"hljs-title class_\">Promise</span>.<span class=\"hljs-title function_\">reject</span>(<span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">Error</span>(<span class=\"hljs-string\">&#x27;token超时了&#x27;</span>))\n    }\n    config.<span class=\"hljs-property\">headers</span>[<span class=\"hljs-string\">&#x27;Authorization&#x27;</span>] = <span class=\"hljs-string\">`Bearer <span class=\"hljs-subst\">${store.getters.token}</span>`</span>\n  }\n  <span class=\"hljs-keyword\">return</span> config\n},<span class=\"hljs-function\"><span class=\"hljs-params\">error</span> =&gt;</span> {\n  <span class=\"hljs-keyword\">return</span> <span class=\"hljs-title class_\">Promise</span>.<span class=\"hljs-title function_\">reject</span>(error)\n})\n</code></div></pre>\n<h3><a id=\"_24\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/m3/wallhaven-m33yl8.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "8",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc31b7a67d654398830d",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>九、退出登录功能</h2>\n<p>逻辑：退出登录，删除用户token，删除用户资料</p>\n<h3><a id=\"action_srcstoremodulesuserjs_4\"></a>定义退出登录<code>action src/store/modules/user.js</code></h3>\n<pre><div class=\"hljs\"><code class=\"lang-js\"><span class=\"hljs-comment\">// 删除token</span>\n    <span class=\"hljs-title function_\">delToken</span>(<span class=\"hljs-params\">state</span>) {\n      state.<span class=\"hljs-property\">userToken</span> = <span class=\"hljs-literal\">null</span>\n      <span class=\"hljs-title function_\">removeToken</span>()\n    },\n<span class=\"hljs-comment\">// 删除用户信息</span>\n    <span class=\"hljs-title function_\">removeUserInfo</span>(<span class=\"hljs-params\">state</span>) {\n      state.<span class=\"hljs-property\">userInfo</span> = {}\n    }\n</code></div></pre>\n<h3><a id=\"_18\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/6d/wallhaven-6dd3vw.png",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "9",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc4db7a67d654398830f",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>十、路由配置</h2>\n<h3><a id=\"srcrouterindexjs_2\"></a>删除多余的静态路由表<code>src/router/index.js</code></h3>\n<pre><div class=\"hljs\"><code class=\"lang-js\"><span class=\"hljs-comment\">// 静态路由</span>\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">const</span> constantRoutes = [\n  {\n    <span class=\"hljs-attr\">path</span>: <span class=\"hljs-string\">&#x27;/login&#x27;</span>,\n    <span class=\"hljs-attr\">component</span>: <span class=\"hljs-function\">() =&gt;</span> <span class=\"hljs-title function_\">import</span>(<span class=\"hljs-string\">&#x27;@/views/login/index&#x27;</span>),\n    <span class=\"hljs-attr\">hidden</span>: <span class=\"hljs-literal\">true</span>\n  },\n\n  {\n    <span class=\"hljs-attr\">path</span>: <span class=\"hljs-string\">&#x27;/404&#x27;</span>,\n    <span class=\"hljs-attr\">component</span>: <span class=\"hljs-function\">() =&gt;</span> <span class=\"hljs-title function_\">import</span>(<span class=\"hljs-string\">&#x27;@/views/404&#x27;</span>),\n    <span class=\"hljs-attr\">hidden</span>: <span class=\"hljs-literal\">true</span>\n  },\n\n  {\n    <span class=\"hljs-attr\">path</span>: <span class=\"hljs-string\">&#x27;/&#x27;</span>,\n    <span class=\"hljs-attr\">component</span>: <span class=\"hljs-title class_\">Layout</span>,\n    <span class=\"hljs-attr\">redirect</span>: <span class=\"hljs-string\">&#x27;/dashboard&#x27;</span>,\n    <span class=\"hljs-attr\">children</span>: [{\n      <span class=\"hljs-attr\">path</span>: <span class=\"hljs-string\">&#x27;dashboard&#x27;</span>,\n      <span class=\"hljs-attr\">name</span>: <span class=\"hljs-string\">&#x27;Dashboard&#x27;</span>,\n      <span class=\"hljs-attr\">component</span>: <span class=\"hljs-function\">() =&gt;</span> <span class=\"hljs-title function_\">import</span>(<span class=\"hljs-string\">&#x27;@/views/dashboard/index&#x27;</span>),\n      <span class=\"hljs-attr\">meta</span>: { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&#x27;Dashboard&#x27;</span>, <span class=\"hljs-attr\">icon</span>: <span class=\"hljs-string\">&#x27;dashboard&#x27;</span> }\n    }]\n  },\n</code></div></pre>\n<h3><a id=\"_32\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/5g/wallhaven-5ggol7.png",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "10",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc5fb7a67d6543988311",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>十一、组织架构</h2>\n<h3><a id=\"_2\"></a>头部样式布局</h3>\n<pre><code class=\"lang-vue\">&lt;template&gt;\n    &lt;div class=&quot;dashboard-container&quot;&gt;\n      &lt;div class=&quot;app-container&quot;&gt;\n        &lt;el-card&gt;\n          &lt;el-row type=&quot;flex&quot; justify=&quot;space-between&quot;&gt;\n            &lt;el-col&gt;\n              &lt;!-- 头部公司名字 --&gt;\n              &lt;tree-tools :tree-node=&quot;company&quot; @addDepts=&quot;addDepts&quot;&gt;&lt;/tree-tools&gt;\n              &lt;!-- 树 --&gt;\n              &lt;el-tree :data=&quot;data&quot; :props=&quot;defaultProps&quot; default-expand-all&gt;\n                &lt;!-- 组件使用 --&gt;\n                &lt;tree-tools slot-scope=&quot;{data}&quot; :tree-node=&quot;data&quot; :is-root=&quot;true&quot; @delDepts=&quot;getDepartments&quot; @addDepts=&quot;addDepts&quot;&gt;&lt;/tree-tools&gt;\n              &lt;/el-tree&gt;\n            &lt;/el-col&gt;\n          &lt;/el-row&gt;\n        &lt;/el-card&gt;\n      &lt;/div&gt;\n        &lt;!-- 放置弹层组件 --&gt;\n        &lt;add-dept :show-dialog.sync=&quot;showDialog&quot; :tree-node=&quot;node&quot; @addDepts=&quot;getDepartments&quot; /&gt;\n    &lt;/div&gt;\n&lt;/template&gt;\n</code></pre>\n<h3><a id=\"_28\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/d6/wallhaven-d66wgo.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "11",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    },
+    {
+      "_id": "63e3cc95b7a67d6543988313",
+      "noteCommends": "[ ]",
+      "noteContent": "<h2><a id=\"_0\"></a>十二、获取用户头像</h2>\n<h3><a id=\"srcapiuserjs_2\"></a>封装获取用户信息<code>src/api/user.js</code></h3>\n<pre><div class=\"hljs\"><code class=\"lang-js\"><span class=\"hljs-comment\">// 获取用户头像</span>\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">function</span> <span class=\"hljs-title function_\">getUserImage</span>(<span class=\"hljs-params\">id</span>) {\n  <span class=\"hljs-keyword\">return</span> <span class=\"hljs-title function_\">request</span>({\n    <span class=\"hljs-attr\">url</span>: <span class=\"hljs-string\">`/sys/user/<span class=\"hljs-subst\">${id}</span>`</span>,\n  })\n}\n</code></div></pre>\n<h3><a id=\"_13\"></a></h3>\n",
+      "noteCoverImg": "https://w.wallhaven.cc/full/m3/wallhaven-m33yl8.jpg",
+      "noteCreateTime": "2023-02-09",
+      "noteId": "12",
+      "noteReading": "0",
+      "noteTag": "MS",
+      "noteUserId": "1"
+    }
+  ]
+}

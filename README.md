@@ -15,10 +15,9 @@ Vue2 + veux + vue-router + ES6 + less + element-ui + express + mongoldb + socket
 ## 功能列表
 
 - [x] 登录/注册
-
 - [x] 书籍数据展示
 - [ ] 书籍评分
-- [ ] 书籍详情页
+- [x] 书籍详情页
 - [ ] 书籍分享
 - [ ] 添加书籍
 - [x] 添加、删除、修改任务列表
@@ -29,18 +28,17 @@ Vue2 + veux + vue-router + ES6 + less + element-ui + express + mongoldb + socket
 - [x] 沙盒支付功能
 - [x] 订单列表
 - [x] 订单搜索
-
 - [x] 笔记列表及详情
 - [x] 笔记分类
 - [x] 非即时评论
 - [x] Markdown笔记创建
 - [ ] 笔记分享
 - [x] Vuex即时聊天室
-
 - [x] 天气推送
 - [ ] 图表📈
 - [ ] 帐户信息
 - [ ] 上传头像
+- [ ] 移动端适配
 
 ## 实现思路
 
